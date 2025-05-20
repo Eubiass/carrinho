@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Carrinho.MainPage">
+    
+    <ScrollView>
+    <VerticalStackLayout Padding="30,0" Spacing="25">
+
+        <!-- Entrada de dados -->
+        <Frame>
+            <Grid RowDefinitions="*, *,*" ColumnDefinitions="*, *, *" RowSpacing="10">
+                <Entry x:Name="entryValor"
+                       Placeholder="Valor"
+                       Grid.Row="0" Grid.ColumnSpan="3" />
+
+                <Entry x:Name="lblDescricao"
+                       Placeholder="Descrição"
+                       Grid.Row="1" Grid.ColumnSpan="3" />
+
+                <Button x:Name="adicionarBtn"
+                        Text="Adicionar"
+                        Clicked="OnAdicionarProdutoClicked"
+                        HorizontalOptions="Fill"
+                        Grid.Row="2" Grid.ColumnSpan="3" />
+            </Grid>
+        </Frame>
+
+        <!-- Lista de produtos -->
+        <CollectionView x:Name="listaProdutos">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid ColumnDefinitions="30,*,Auto,Auto" Padding="5">
+                        <Label Text="{Binding Numero}" />
+                        <Label Text="{Binding Descricao}" />
+                        <Label Text="{Binding ValorFormatado}" />
+                        <StackLayout Orientation="Horizontal" Spacing="5">
+                            <Button Text="Ed" Clicked="OnEditarClicked" />
+                            <Button Text="Del" Clicked="OnExcluirClicked" />
+                        </StackLayout>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Total -->
+        <Label x:Name="totalItensLabel"
+               FontAttributes="Bold"
+               HorizontalOptions="End"
+               Text="Total: 0" />
+
+    </VerticalStackLayout>
+</ScrollView>
